@@ -88,8 +88,8 @@ void insertNegative(int key,int index) {
 
 void freeHashTable() {
     for (int h = 0; h < SIZE; h++) {
-        free(&hashArray[h]);
-        free(hashArrayNegative[h]);
+        hashArray[h] = NULL;
+        hashArrayNegative[h] = NULL;
     }
 }
 
