@@ -22,7 +22,7 @@ vector<int> twoSum(vector<int>& nums, int target) {
         int s2 = target - s1;
         
         if (hashTable.contains(s2)) {
-            map<int,int>::iterator savedItem = hashTable.find(s2);
+            auto savedItem = hashTable.find(s2);
             answer.push_back(savedItem->second);
             answer.push_back(i);
             hashTable.clear();
