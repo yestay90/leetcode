@@ -6,34 +6,39 @@
 //
 
 #include <iostream>
+#include <vector>
+
 using namespace std;
 class Solution {
     public:
     string convert(string s, int numRows) {
+        
+        if (numRows == 1)
+            return s;
+        
+        string converted = "";
         int currentRow = 0;
         int currentCol = 0;
 
-        char ** A;
-        A = new char*[numRows];
+        vector<vector<char>> array(numRows);
+        
         for (int a = 0; a < numRows; a++)
-            A[a] = new char[s.length()];
+            array[a] = vector<char>(s.length());
         
-        A[currentRow][currentCol] = s[0];
-        string converted;
-        int i = 1;
+        array[currentRow][currentCol] = s[0];
         bool isRowDirection = true;
-        
+        int i = 1;
         while (i < s.length()) {
             if (isRowDirection) {
                 if (currentRow + 1 < numRows) {
-                    A[++currentRow][currentCol] = s[i];
+                    array[++currentRow][currentCol] = s[i];
                     i++;
                 } else {
                     isRowDirection = false;
                 }
             } else {
                 if (currentRow > 0 && currentCol + 1 < s.length()) {
-                    A[--currentRow][++currentCol] = s[i];
+                    array[--currentRow][++currentCol] = s[i];
                     i++;
                 } else {
                     isRowDirection = true;
@@ -43,8 +48,9 @@ class Solution {
         
         for (int r = 0; r < numRows; r++){
             for (int c = 0; c < s.length(); c++) {
-                if (A[r][c])
-                    converted += A[r][c];
+                if (array[r][c]) {
+                    converted += array[r][c];
+                }
             }
         }
         
@@ -57,9 +63,9 @@ int main(int argc, const char * argv[]) {
     
     Solution myObj;
   
-    string s = "YEstayMuratov";
+    string s = "AB";
     
-    string v = myObj.convert(s, 4);
+    string v = myObj.convert(s, 1);
     
     cout<<v<<endl;
     
